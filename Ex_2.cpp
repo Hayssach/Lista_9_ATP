@@ -1,65 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Função que calcula a transposta de uma matriz 3x3
-void transposta3x3(int** matriz, int** transposta) {
+// FunÃ§Ã£o que calcula a transposta
+void MT3x3(int** m, int** trans) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            transposta[j][i] = matriz[i][j];
+            trans[j][i] = m[i][j];
         }
     }
 }
 
-// Função auxiliar para imprimir uma matriz 3x3
-void imprimirMatriz(int** matriz) {
+// FunÃ§Ã£o auxiliar para imiprimir 
+void imprimeMatriz(int** m) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            printf("%d ", matriz[i][j]);
+            printf("%d ", m[i][j]);
         }
         printf("\n");
     }
 }
 
-// Função para alocar uma matriz 3x3
-int** alocaMatriz() {
-    int** m = (int**)malloc(3 * sizeof(int*));
+// FunÃ§Ã£o para alocar uma matriz
+int** alocarMatriz() {
+    int** n = (int**)malloc(3 * sizeof(int*));
     for (int i = 0; i < 3; i++) {
-        m[i] = (int*)malloc(3 * sizeof(int));
+        n[i] = (int*)malloc(3 * sizeof(int));
     }
-    return m;
+    return n;
 }
 
-// Função para liberar uma matriz 3x3
-void liberaMatriz(int** matriz) {
+// FunÃ§Ã£o para liberar uma matriz 
+void liberarMatriz(int** m) {
     for (int i = 0; i < 3; i++) {
-        free(matriz[i]);
+        free(m[i]);
     }
-    free(matriz);
+    free(m);
 }
 
 int main() {
-    int** matriz = alocaMatriz();
-    int** transposta = alocaMatriz();
+    int** m = alocarMatriz();
+    int** trans = alocarMatriz();
 
     printf("Digite os 9 elementos da matriz 3x3:\n");
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            printf("Elemento [%d][%d]: ", i, j);
-            scanf("%d", &matriz[i][j]);
+    for (int k = 0; k < 3; k++) {
+        for (int l = 0; l < 3; l++) {
+            printf("Elemento [%d][%d]: ", k, l);
+            scanf("%d", &m[k][l]);
         }
     }
 
-    transposta3x3(matriz, transposta);
+    MT3x3(m, trans);
 
     printf("\nMatriz original:\n");
-    imprimirMatriz(matriz);
+    imprimeMatriz(m);
 
     printf("\nMatriz transposta:\n");
-    imprimirMatriz(transposta);
+    imprimeMatriz(trans);
 
-    // Liberação da memória
-    liberaMatriz(matriz);
-    liberaMatriz(transposta);
+    // LiberaÃ§Ã£o da memÃ³ria
+    liberarMatriz(m);
+    liberarMatriz(trans);
     
     getchar();
     return 0;
