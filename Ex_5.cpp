@@ -1,52 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Função que realiza o produto vetorial entre dois vetores 3D
-void produtoVetorial(int a[3], int b[3], int resultado[3]) {
-    resultado[0] = a[1]*b[2] - a[2]*b[1];
-    resultado[1] = a[2]*b[0] - a[0]*b[2];
-    resultado[2] = a[0]*b[1] - a[1]*b[0];
+// FunÃ§Ã£o que realiza o produto vetorial entre dois vetores 3D
+void produtoVet(int a[3], int b[3], int resultado[3]) {
+    result[0] = a[1]*b[2] - a[2]*b[1];
+    result[1] = a[2]*b[0] - a[0]*b[2];
+    result[2] = a[0]*b[1] - a[1]*b[0];
 }
 
-// Função que realiza o produto vetorial linha a linha entre duas matrizes 3x3
-void produtoVetorialMatrizes(int** A, int** B, int** resultado) {
+// FunÃ§Ã£o que realiza o produto vetorial linha a linha entre duas matrizes 3x3
+void produtoVMatrizes(int** A, int** B, int** result) {
     for (int i = 0; i < 3; i++) {
-        produtoVetorial(A[i], B[i], resultado[i]);
+        produtoVet(A[i], B[i], resut[i]);
     }
 }
 
-// Função para imprimir uma matriz 3x3
-void imprimirMatriz(int** matriz) {
+// FunÃ§Ã£o para imprimir uma matriz 3x3
+void imprimiMatriz(int** m) {
     for (int i = 0; i < 3; i++) {
         printf("[ ");
         for (int j = 0; j < 3; j++) {
-            printf("%d ", matriz[i][j]);
+            printf("%d ", m[i][j]);
         }
         printf("]\n");
     }
 }
 
-// Função para alocar dinamicamente uma matriz 3x3
-int** alocaMatriz() {
-    int** matriz = (int**)malloc(3 * sizeof(int*));
+// FunÃ§Ã£o para alocar dinamicamente uma matriz 3x3
+int** alocarMatriz() {
+    int** m = (int**)malloc(3 * sizeof(int*));
     for (int i = 0; i < 3; i++) {
-        matriz[i] = (int*)malloc(3 * sizeof(int));
+        m[i] = (int*)malloc(3 * sizeof(int));
     }
-    return matriz;
+    return m;
 }
 
-// Função para liberar uma matriz 3x3
-void liberaMatriz(int** matriz) {
+// FunÃ§Ã£o para liberar uma matriz 3x3
+void liberarMatriz(int** m) {
     for (int i = 0; i < 3; i++) {
-        free(matriz[i]);
+        free(m[i]);
     }
-    free(matriz);
+    free(m);
 }
 
 int main() {
-    int** A = alocaMatriz();
-    int** B = alocaMatriz();
-    int** resultado = alocaMatriz();
+    int** A = alocarMatriz();
+    int** B = alocarMatriz();
+    int** result = alocarMatriz();
 
     // Entrada dos valores da matriz A
     printf("Digite os elementos da matriz A (3x3):\n");
@@ -66,17 +66,17 @@ int main() {
         }
     }
 
-    // Cálculo do produto vetorial linha a linha
-    produtoVetorialMatrizes(A, B, resultado);
+    // CÃ¡lculo do produto vetorial linha a linha
+    produtoVetMatrizes(A, B, result);
 
-    // Impressão do resultado
+    // ImpressÃ£o do resultado
     printf("\nProduto vetorial (linha a linha) das matrizes:\n");
-    imprimirMatriz(resultado);
+    imprimiMatriz(result);
 
-    // Liberação da memória
-    liberaMatriz(A);
-    liberaMatriz(B);
-    liberaMatriz(resultado);
+    // LiberaÃ§Ã£o da memÃ³ria
+    liberarMatriz(A);
+    liberarMatriz(B);
+    liberarMatriz(result);
     
     getchar();
     return 0;
