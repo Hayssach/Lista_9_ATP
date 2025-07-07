@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-// Função que verifica se um número está presente na matriz 3x3
-bool encontrarNumero(int** matriz, int numero, int *linha, int *coluna) {
+// FunÃ§Ã£o que verifica se um nÃºmero estÃ¡ presente na matriz 
+bool encontreNumero(int** m, int num, int *l, int *c) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (matriz[i][j] == numero) {
-                *linha = i;
-                *coluna = j;
+            if (m[i][j] == num) {
+                *l = i;
+                *c = j;
                 return true;
             }
         }
@@ -16,27 +16,27 @@ bool encontrarNumero(int** matriz, int numero, int *linha, int *coluna) {
     return false;
 }
 
-// Função para alocar uma matriz 3x3 dinamicamente
-int** alocaMatriz() {
-    int** matriz = (int**)malloc(3 * sizeof(int*));
+// FunÃ§Ã£o para alocar uma matriz dinamicamente
+int** alocafMatriz() {
+    int** m = (int**)malloc(3 * sizeof(int*));
     for (int i = 0; i < 3; i++) {
-        matriz[i] = (int*)malloc(3 * sizeof(int));
+        m[i] = (int*)malloc(3 * sizeof(int));
     }
-    return matriz;
+    return m;
 }
 
-// Função para liberar a matriz 3x3
-void liberaMatriz(int** matriz) {
+// FunÃ§Ã£o para liberar a matriz 
+void liberarMatriz(int** m) {
     for (int i = 0; i < 3; i++) {
-        free(matriz[i]);
+        free(m[i]);
     }
-    free(matriz);
+    free(m);
 }
 
 int main() {
-    int** matriz = alocaMatriz();
+    int** M = alocarMatriz();
 
-    // Preenchendo com os mesmos valores do seu exemplo
+    // Preenchendo a matriz 
     int valores[3][3] = {
         {4, 7, 1},
         {8, 2, 9},
@@ -44,21 +44,21 @@ int main() {
     };
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
-            matriz[i][j] = valores[i][j];
+            M[i][j] = valores[i][j];
 
-    int numero;
-    printf("Digite o número a ser procurado: ");
-    scanf("%d", &numero);
+    int num;
+    printf("Digite o nÃºmero a ser procurado: ");
+    scanf("%d", &num);
 
-    int linha, coluna;
+    int l, c;
 
-    if (encontrarNumero(matriz, numero, &linha, &coluna)) {
-        printf("Número %d encontrado na posição [%d][%d]\n", numero, linha, coluna);
+    if (encontreNumero(M, num, &l, &c)) {
+        printf("NÃºmero %d encontrado na posiÃ§Ã£o [%d][%d]\n", num, l, c);
     } else {
-        printf("Número %d não encontrado na matriz.\n", numero);
+        printf("NÃºmero %d nÃ£o encontrado na matriz.\n", num);
     }
 
-    liberaMatriz(matriz); // Libera memória alocada
+    liberarMatriz(M); 
     
     getchar();
     return 0;
