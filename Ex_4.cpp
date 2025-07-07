@@ -1,49 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Função que calcula a soma da diagonal principal de uma matriz 3x3
-int somaDiagonalPrincipal(int** matriz) {
-    int soma = 0;
+int somarDiagonalPrincipal(int** m) {
+    int s = 0;
     for (int i = 0; i < 3; i++) {
-        soma += matriz[i][i]; // Elementos onde linha == coluna
+        s += m[i][i]; 
     }
-    return soma;
+    return s;
 }
 
-// Função para alocar dinamicamente uma matriz 3x3
-int** alocaMatriz() {
-    int** matriz = (int**)malloc(3 * sizeof(int*));
+// FunÃ§Ã£o para alocar dinamicamente uma matriz 
+int** alocarMatriz() {
+    int** m = (int**)malloc(3 * sizeof(int*));
     for (int i = 0; i < 3; i++) {
-        matriz[i] = (int*)malloc(3 * sizeof(int));
+        m[i] = (int*)malloc(3 * sizeof(int));
     }
-    return matriz;
+    return m;
 }
 
-// Função para liberar a memória da matriz 3x3
-void liberaMatriz(int** matriz) {
+
+void liberarMatriz(int** m) {
     for (int i = 0; i < 3; i++) {
-        free(matriz[i]);
+        free(m[i]);
     }
-    free(matriz);
+    free(m);
 }
 
 int main() {
-    int** matriz = alocaMatriz();
+    int** M = alocarMatriz();
 
-    // Entrada de dados pelo usuário
+    
     printf("Digite os valores da matriz 3x3:\n");
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             printf("Elemento [%d][%d]: ", i, j);
-            scanf("%d", &matriz[i][j]);
+            scanf("%d", &M[i][j]);
         }
     }
 
-    int soma = somaDiagonalPrincipal(matriz);
-    printf("\nSoma da diagonal principal: %d\n", soma);
+    int s = somarDiagonalPrincipal(M);
+    printf("\nSoma da diagonal principal: %d\n", s);
 
-    // Libera memória
-    liberaMatriz(matriz);
+    
+    liberarMatriz(M);
     getchar();
     return 0;
 }
