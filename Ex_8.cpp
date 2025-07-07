@@ -1,70 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Função para alocar a matriz dinamicamente
-int** alocarMatriz(int linhas, int colunas) {
-    int** matriz = (int**)malloc(linhas * sizeof(int*));
-    if (matriz == NULL) {
-        printf("Erro ao alocar memória para as linhas.\n");
+// FunÃ§Ã£o para alocar a matriz dinamicamente
+int** alocaMatriz(int lis, int cols) {
+    int** m = (int**)malloc(lis * sizeof(int*));
+    if (m == NULL) {
+        printf("Erro ao alocar memÃ³ria para as linhas.\n");
         exit(1);
     }
 
-    for (int i = 0; i < linhas; i++) {
-        matriz[i] = (int*)malloc(colunas * sizeof(int));
-        if (matriz[i] == NULL) {
-            printf("Erro ao alocar memória para as colunas.\n");
+    for (int i = 0; i < lis; i++) {
+        m[i] = (int*)malloc(cols * sizeof(int));
+        if (m[i] == NULL) {
+            printf("Erro ao alocar memÃ³ria para as colunas.\n");
             exit(1);
         }
     }
 
-    return matriz;
+    return m;
 }
 
-// Função para preencher a matriz com entrada do usuário
-void preencherMatriz(int** matriz, int linhas, int colunas) {
+// FunÃ§Ã£o para preencher a matriz com entrada do usuÃ¡rio
+void preencheMatriz(int** m, int lis, int cols) {
     printf("Digite os valores da matriz:\n");
-    for (int i = 0; i < linhas; i++) {
-        for (int j = 0; j < colunas; j++) {
+    for (int i = 0; i < lis; i++) {
+        for (int j = 0; j < cols; j++) {
             printf("Elemento [%d][%d]: ", i, j);
-            scanf("%d", &matriz[i][j]);
+            scanf("%d", &m[i][j]);
         }
     }
 }
 
-// Função para liberar a memória alocada
-void liberarMatriz(int** matriz, int linhas) {
-    for (int i = 0; i < linhas; i++) {
-        free(matriz[i]); // libera cada linha
+// FunÃ§Ã£o para liberar a memÃ³ria alocada
+void liberaMatriz(int** m, int lis) {
+    for (int i = 0; i < lis; i++) {
+        free(m[i]); // libera cada linha
     }
-    free(matriz); // libera o vetor de ponteiros
+    free(m); // libera o vetor de ponteiros
 }
 
 int main() {
-    int linhas, colunas;
+    int lis, cols;
 
-    printf("Digite o número de linhas: ");
-    scanf("%d", &linhas);
+    printf("Digite o nÃºmero de linhas: ");
+    scanf("%d", &lis);
 
-    printf("Digite o número de colunas: ");
-    scanf("%d", &colunas);
+    printf("Digite o nÃºmero de colunas: ");
+    scanf("%d", &cols);
 
     // Aloca a matriz
-    int** matriz = alocarMatriz(linhas, colunas);
+    int**  = alocaMatriz(lis, cols);
 
     // Preenche a matriz
-    preencherMatriz(matriz, linhas, colunas);
+    preencheMatriz(m, lis, cols);
 
     // (Opcional) Imprime a matriz preenchida
     printf("\nMatriz preenchida:\n");
-    for (int i = 0; i < linhas; i++) {
-        for (int j = 0; j < colunas; j++) {
-            printf("%d ", matriz[i][j]);
+    for (int i = 0; i < lis; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", m[i][j]);
         }
         printf("\n");
     }
 
-    // Libera a memória
-    liberarMatriz(matriz, linhas);
+    // Libera a memÃ³ria
+    liberaMatriz(m, lis);
     getchar();
     
     return 0;
