@@ -1,68 +1,68 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Função para alocar uma matriz 3x3
-int** aloca_matriz() {
-    int** matriz = (int**)malloc(3 * sizeof(int*));
+// FunÃ§Ã£o para alocar uma matriz 3x3
+int** alocar_matriz() {
+    int** m = (int**)malloc(3 * sizeof(int*));
     for (int i = 0; i < 3; i++) {
-        matriz[i] = (int*)malloc(3 * sizeof(int));
+        m[i] = (int*)malloc(3 * sizeof(int));
     }
-    return matriz;
+    return m;
 }
 
-// Função para liberar memória de uma matriz 3x3
-void libera_matriz(int** matriz) {
+// FunÃ§Ã£o para liberar memÃ³ria de uma matriz 3x3
+void liberar_matriz(int** m) {
     for (int i = 0; i < 3; i++) {
-        free(matriz[i]);
+        free(m[i]);
     }
-    free(matriz);
+    free(m);
 }
 
-// Função que soma duas matrizes 3x3 e retorna o resultado
-int** soma_matrizes(int** A, int** B) {
-    int** resultado = aloca_matriz();
+// FunÃ§Ã£o que soma duas matrizes 3x3 e retorna o resultado
+int** somar_matrizes(int** J, int** I) {
+    int** r = alocar_matriz();
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            resultado[i][j] = A[i][j] + B[i][j];
+            r[i][j] = J[i][j] + I[i][j];
         }
     }
-    return resultado;
+    return r;
 }
 
-// Função para imprimir a matriz 3x3
-void imprime_matriz(int** matriz) {
+// FunÃ§Ã£o para imprimir a matriz 3x3
+void imprimir_matriz(int** m) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            printf("%d ", matriz[i][j]);
+            printf("%d ", m[i][j]);
         }
         printf("\n");
     }
 }
 
 int main() {
-    int** matriz1 = aloca_matriz();
-    int** matriz2 = aloca_matriz();
+    int** m1 = alocar_matriz();
+    int** m2 = alocar_matriz();
 
     // Preenchendo as matrizes com exemplo de dados
     printf("Digite os valores da primeira matriz 3x3:\n");
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
-            scanf("%d", &matriz1[i][j]);
+            scanf("%d", &m1[i][j]);
 
     printf("Digite os valores da segunda matriz 3x3:\n");
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
-            scanf("%d", &matriz2[i][j]);
+            scanf("%d", &m2[i][j]);
 
-    int** resultado = soma_matrizes(matriz1, matriz2);
+    int** r = somar_matrizes(m1, m2);
 
     printf("Resultado da soma das matrizes:\n");
-    imprime_matriz(resultado);
+    imprimir_matriz(r);
 
-    // Liberando memória
-    libera_matriz(matriz1);
-    libera_matriz(matriz2);
-    libera_matriz(resultado);
+    // Liberando memÃ³ria
+    liberar_matriz(m1);
+    liberar_matriz(m2);
+    liberar_matriz(r);
     
     getchar();
     return 0;
